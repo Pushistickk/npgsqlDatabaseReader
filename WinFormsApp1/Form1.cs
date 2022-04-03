@@ -92,9 +92,8 @@ namespace WinFormsApp1
             }
 		}
 	
-		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		static public void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			Program.DBC.closeConnection();
 		}
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -21,7 +21,7 @@ namespace WinFormsApp1
                 Application.Exit();
             }
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new authForm());
         }
     }
 }
