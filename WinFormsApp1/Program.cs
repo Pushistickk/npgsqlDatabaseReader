@@ -6,6 +6,7 @@ namespace WinFormsApp1
     internal static class Program
     {
         public static DatabaseConnection DBC = new DatabaseConnection();
+        public static AUTOSERVICEContext AUTOSERVICE = new AUTOSERVICEContext();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

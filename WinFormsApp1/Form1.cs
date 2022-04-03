@@ -10,8 +10,14 @@ namespace WinFormsApp1
 		}
 		public static List<string> tabNames = new List<string>();
 		public static List<DataGridView> dataGrids = new List<DataGridView>();
+		public static List<Systemtable> systemtables = new List<Systemtable>();
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			systemtables = Program.AUTOSERVICE.Systemtables.ToList<Systemtable>();
+			foreach(Systemtable st in Program.AUTOSERVICE.Systemtables)
+            {
+				comboBox1.Items.Add(st.Commandname);
+            }
 			DataTable dt = new DataTable();
 			dt = Program.DBC.GetConnection().GetSchema("TABLEs");
 			foreach(DataRow dr in dt.Rows)
@@ -90,6 +96,58 @@ namespace WinFormsApp1
 		{
 			Program.DBC.closeConnection();
 		}
-	}
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			richTextBox1.Text = systemtables[comboBox1.SelectedIndex].Command;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+			if(richTextBox1.Text==""||textBox1.Text=="")
+            {
+				MessageBox.Show("Заполните название и запрос");
+				return;
+            }
+			Systemtable st = new Systemtable();
+			st.Id = systemtables.Count;
+			st.Commandname = textBox1.Text;
+			st.Command = richTextBox1.Text;
+			systemtables.Add(st);
+			comboBox1.Items.Add(st.Commandname);
+            try
+            {
+				Program.AUTOSERVICE.Systemtables.Add(st);
+				Program.AUTOSERVICE.SaveChanges();
+			}
+			catch(Exception exc)
+            {
+				MessageBox.Show(exc.Message);
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+			if (comboBox1.SelectedIndex >= 0)
+			{
+				try
+				{
+					Program.AUTOSERVICE.Systemtables.Remove(systemtables[comboBox1.SelectedIndex]);
+					Program.AUTOSERVICE.SaveChanges();
+					systemtables.RemoveAt(comboBox1.SelectedIndex);
+					comboBox1.Items.RemoveAt(comboBox1.SelectedIndex);
+					MessageBox.Show("Удалено");
+				}
+				catch (Exception exc)
+				{
+					MessageBox.Show(exc.Message);
+				}
+
+			}
+			else
+				MessageBox.Show("Выберите запрос");
+        }
+    }
 	
 }

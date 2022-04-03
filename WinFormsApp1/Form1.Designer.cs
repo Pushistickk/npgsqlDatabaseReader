@@ -96,6 +96,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(133, 23);
             this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -114,6 +115,7 @@
             this.button3.TabIndex = 8;
             this.button3.Text = "Сохранить текущий запрос <<<<<<<<<<<<<";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -126,6 +128,7 @@
             this.button4.TabIndex = 9;
             this.button4.Text = "Удалить выбранный запрос";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox1
             // 
