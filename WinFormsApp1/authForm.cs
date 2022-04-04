@@ -28,13 +28,14 @@ namespace WinFormsApp1
                     if(info.password == textBox2.Text)
                     {
                         if (info.role == "admin")
+                        {
                             f = new Form1();
+                            f.FormClosing += new FormClosingEventHandler(authForm_FormClosing);
+                            this.Hide();
+                            f.ShowDialog();
+                        }
                         else
-                            f = new Form2();
-                        f.FormClosing += new FormClosingEventHandler(authForm_FormClosing);
-                        this.Hide();
-                        f.ShowDialog();
-
+                            MessageBox.Show("Отказано в доступе");
                     }
                     else
                     {
